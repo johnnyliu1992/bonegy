@@ -1,0 +1,115 @@
+{% extends 'bonegymain/base.html' %}
+{% block content %}
+{% load static %}
+<br><br><br>
+
+<form action="{% url 'result' %}" method="POST">
+{% csrf_token %}
+  <div class="form-inline col-sm-12 text-center">
+    <label class="col-sm-6" style="font-size:30px;">Gene Name: </label>
+    <input type="text" class="form-control" id="GeneName" name="GeneName">
+  </div>
+  <br>
+  <div class="col-12 text-center">
+    <button type="submit" class="btn btn-success m-5">Search</button>
+  </div>
+</form>
+
+<br><br>
+
+
+<center>
+<h3>Result for {{gene_name}}</h3>
+  <table border="2">
+    <tr>
+	  <th>Disease Name</th>
+	  <th>logFC positive, P.Value less 0.01</th>
+	  <th>logFC positive and P.Value (0.01,0.05)</th>
+	  <th>P.Value over 0.05</th>
+	  <th>logFC negative and P.Value (0.01,0.05)/th>
+	  <th>logFC negative, P.Value less 0.01</th>
+	</tr>
+	<tr>
+	  <td>Disease 1</td>
+	  <td id="1_1"><a href="{% url 'plot' group='1_1' %}" method="POST">{{d1_cate_1_count}}</a></td>
+	  <td id="1_2"><a href="{% url 'plot' group='1_2' %}" method="POST">{{d1_cate_2_count}}</a></td>
+	  <td id="1_3"><a href="{% url 'plot' group='1_3' %}" method="POST">{{d1_cate_3_count}}</a></td>
+	  <td id="1_4"><a href="{% url 'plot' group='1_4' %}" method="POST">{{d1_cate_4_count}}</a></td>
+	  <td id="1_5"><a href="{% url 'plot' group='1_5' %}" method="POST">{{d1_cate_5_count}}</a></td>
+	</tr>
+	<tr>
+	  <td>Disease 2</td>
+	  <td id="2_1"><a href="{% url 'plot' group='2_1' %}">{{d2_cate_1_count}}</a></td>
+	  <td id="2_2"><a href="{% url 'plot' group='2_2' %}">{{d2_cate_2_count}}</a></td>
+	  <td id="2_3"><a href="{% url 'plot' group='2_3' %}">{{d2_cate_3_count}}</a></td>
+	  <td id="2_4"><a href="{% url 'plot' group='2_4' %}">{{d2_cate_4_count}}</a></td>
+	  <td id="2_5"><a href="{% url 'plot' group='2_5' %}">{{d2_cate_5_count}}</a></td>
+	</tr>
+  </table>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+    if ($("#1_1").text() != "0") {
+	    $("#1_1").css('background-color','#EC7063');
+	} else {
+	  $("#1_1").find("a").contents().unwrap();
+	}
+    if ($("#1_2").text() != "0") {
+	    $("#1_2").css('background-color','#FADBD8');
+	}  else {
+	  $("#1_2").find("a").contents().unwrap();
+	}
+    if ($("#1_3").text() != "0") {
+	    $("#1_3").css('background-color','#FBFCFC');
+	}  else {
+	  $("#1_3").find("a").contents().unwrap();
+	}
+    if ($("#1_4").text() != "0") {
+	    $("#1_4").css('background-color','#A9CCE3');
+	}  else {
+	  $("#1_4").find("a").contents().unwrap();
+	}
+    if ($("#1_5").text() != "0") {
+	    $("#1_5").css('background-color','#A9CCE3');
+	}  else {
+	  $("#1_5").find("a").contents().unwrap();
+	}
+    if ($("#2_1").text() != "0") {
+	    $("#2_1").css('background-color','#EC7063');
+	}  else {
+	  $("#2_1").find("a").contents().unwrap();
+	}
+    if ($("#2_2").text() != "0") {
+	    $("#2_2").css('background-color','#FADBD8');
+	}  else {
+	  $("#2_2").find("a").contents().unwrap();
+	}
+    if ($("#2_3").text() != "0") {
+	    $("#2_3").css('background-color','#FBFCFC');
+	}  else {
+	  $("#2_3").find("a").contents().unwrap();
+	}
+    if ($("#2_4").text() != "0") {
+	    $("#2_4").css('background-color','#A9CCE3');
+	}  else {
+	  $("#2_4").find("a").contents().unwrap();
+	}
+    if ($("#2_5").text() != "0") {
+	    $("#2_5").css('background-color','#A9CCE3');
+	}  else {
+	  $("#2_5").find("a").contents().unwrap();
+	}
+
+});
+</script>
+
+
+</center>
+
+
+
+
+
+
+{% endblock %}
